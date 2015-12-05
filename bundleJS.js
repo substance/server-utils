@@ -1,25 +1,15 @@
-var sass = require('node-sass');
+var browserify = require('browserify');
 
-var renderSass = function(path, opt, cb) {
-  sass.render({
-    file: path,
-    sourceMap: opt.map,
-    outFile: opt.file,
-  }, cb);
+var bundleJS = function(path) {
+	return function(req, res, next) {
+	  browserify({ debug: true, cache: false })
+	    .add(path)
+	    .bundle()
+	    .on('error', function(err) {
+	      return next(err);
+	    })
+	    .pipe(res);
+	};
 };
 
-var bundleStyles = function(path, opt) {
-  return function(req, res, next) {
-    renderSass(path, opt, function(err, result) {
-      if (err) return next(err);
-      res.set('Content-Type', 'text/css');
-      if (map) {
-        res.send(result.map);
-      } else {
-        res.send(result.css);
-      }
-    });
-  };
-};
-
-module.exports = bundleStyles;
+module.exports = bundleJS;

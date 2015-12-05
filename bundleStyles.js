@@ -1,15 +1,14 @@
 var sass = require('node-sass');
 
-var renderSass = function(path, map, cb) {
+var renderSass = function(path, opt, cb) {
   sass.render({
     file: path,
-    sourceMap: map,
-    outFile: 'app.css',
+    sourceMap: opt.map,
+    outFile: opt.file,
   }, cb);
 };
 
-var bundleStyles = function(path, map) {
-  if (!map) map = false;
+var bundleStyles = function(path, opt) {
   return function(req, res, next) {
     renderSass(path, function(err, result) {
       if (err) return next(err);
