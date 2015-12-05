@@ -13,7 +13,7 @@ var bundleStyles = function(path, opt) {
     renderSass(path, opt, function(err, result) {
       if (err) return next(err);
       res.set('Content-Type', 'text/css');
-      if (map) {
+      if (opt.map) {
         res.send(result.map);
       } else {
         res.send(result.css);
