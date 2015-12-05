@@ -1,0 +1,18 @@
+{
+  "name": "server-utils",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/substance/server-utils.git"
+  },
+  "engines": {
+    "node": ">=0.11"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "browserify": "substance/node-browserify#d3caeb6dcdaa97a258d099c7231a57f0f60ec876",
+    "express": "4.13.3",
+    "node-sass": "3.4.2"
+  }
+}
