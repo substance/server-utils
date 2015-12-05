@@ -10,7 +10,7 @@ var renderSass = function(path, opt, cb) {
 
 var bundleStyles = function(path, opt) {
   return function(req, res, next) {
-    renderSass(path, function(err, result) {
+    renderSass(path, opt, function(err, result) {
       if (err) return next(err);
       res.set('Content-Type', 'text/css');
       if (map) {
