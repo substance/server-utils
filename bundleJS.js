@@ -11,3 +11,5 @@ var bundleJS = function(path) {
 	    .pipe(res);
 	};
 };
+
+module.exports = bundleJS;
